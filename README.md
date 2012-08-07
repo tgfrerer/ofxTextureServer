@@ -32,7 +32,25 @@ A garbage-collected container and (pre)loader of ofTextures.
 
 ## Motivation
 
-ofTextureServer helps you to memory-manage ofTextures. It will keep your footprint low if you plan to work with lots of ofTextures. Use ofTextureServer to keep track of all your ofTextures, to preload whole directories of images into ofTextures, so that you you can access them instantly once your app is running, or to help you automate your texture memory management.
+ofxTextureServer helps you to keep track of ofTextures. It will keep your
+footprint low if you plan to work with lots of ofTextures.
+
+ofxTextureServer uses a map internally and keeps track of the use count of
+its textures.
+
+Useful to keep track of all your ofTextures, to preload whole directories of
+images into ofTextures and access them instantly once your app is running, or
+to help you automate texture memory management.
+
+I use ofxTextureServer in a couple of projects that require a scene graph{, or
+that use one central place where to get all textures from}. [The Pirate Cannon][nmm-pc] 
+and [Project Runway](http://poniesandlight.co.uk/projects/project_runway/) were such projects.
+
+For example, most pirate ships in [The Pirate Cannon][nmm-pc] use the same
+spritesheet to animate the sails. Each pirate ship object holds a reference to
+the scene graph's global ofxTextureServer. Therefore all ships can share the
+same texture and it is loaded from its original image file only once during
+preload.
 
 ## Example
 
@@ -45,3 +63,5 @@ See included example project.
 ## Dependencies
 
 ♥ oF >= 0071
+
+[nmm-pc]:		http://poniesandlight.co.uk/projects/nmm_cannon/
